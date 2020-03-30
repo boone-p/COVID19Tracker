@@ -1,0 +1,44 @@
+{% extends "homepage/base.html"%}
+
+{% block content%}
+
+<script src='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css' rel='stylesheet' />
+<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.min.js'></script>
+<link
+    rel="stylesheet"
+    href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.css"
+    type="text/css"
+/>
+<style>
+    #geocoder-container > div {
+        min-width: 50%;
+        margin-left: 25%;
+    }
+</style>
+
+<div id='map' style='width: 700px; height: 400px'></div>
+
+<script>
+    mapboxgl.accessToken = 'pk.eyJ1IjoianVzdG5ndXllbjEiLCJhIjoiY2s4OWtvOHE2MDgwNDNlbnQxcG82Mm54ZyJ9.YldnBsLnoZLUwuObPB31Kg';
+    var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v11'
+    });
+
+    var geocoder = new MapboxGeocoder({
+        accessToken: mapboxgl.accessToken,
+        marker: {
+            color: 'orange'
+        },
+        mapboxgl: mapboxgl
+    });
+
+    map.addControl(geocoder);
+
+    map.addControl(new mapboxgl.NavigationControl());
+
+</script>
+
+
+{% endblock content %} 
